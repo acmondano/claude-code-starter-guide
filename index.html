@@ -287,6 +287,11 @@ td .inline-code{font-size:.8em}
     z-index:48;transform:translateX(-105%);transition:transform .25s ease;box-shadow:var(--shadow-lg);
     padding:92px 16px 40px 18px;border-right:2px solid var(--amber)}
   .toc.open{transform:none}
+  /* Android-Chrome fix: backdrop-filter blurs the sliding panel's own text.
+     Use a solid, opaque header on mobile and full-contrast menu text. */
+  .topbar{background:var(--paper);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .toc a{color:var(--ink)}
+  .toc a .n{color:var(--amber-deep)}
   .scrim.show{display:block}
   .menubtn{display:grid}
   .hero{padding:38px 24px 34px;margin-top:16px}
