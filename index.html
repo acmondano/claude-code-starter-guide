@@ -1,0 +1,1083 @@
+<!-- ============================================================
+     CLAUDE CODE — STARTER GUIDE (for a retail shop owner)
+     A gift from Arvin. Single self-contained HTML file.
+     TO PERSONALIZE: search for [NAME] below and replace it
+     with your brother's name. Everything else works as-is.
+     Facts verified against code.claude.com/docs (July 2026).
+     ============================================================ -->
+<meta charset="utf-8">
+<title>Meet Your Business Partner — A Beginner's Guide to Claude Code</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A warm, beginner-friendly guide to setting up Claude Code as an AI business partner for your shops.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#f4ecdd;
+  --paper-2:#fbf6ec;
+  --card:#fdfaf3;
+  --ink:#241c15;
+  --ink-soft:#5c5040;
+  --ink-faint:#8a7c69;
+  --amber:#b56715;
+  --amber-deep:#8a4d08;
+  --amber-wash:#f6e6cf;
+  --teal:#1f5a50;
+  --teal-wash:#dcebe6;
+  --rose:#9e3b24;
+  --rose-wash:#f3ddd4;
+  --line:rgba(36,28,21,.13);
+  --line-strong:rgba(36,28,21,.22);
+  --shadow:0 1px 2px rgba(36,28,21,.05), 0 12px 30px -18px rgba(36,28,21,.35);
+  --shadow-lg:0 2px 6px rgba(36,28,21,.06), 0 30px 60px -30px rgba(36,28,21,.45);
+  --radius:16px;
+  --maxw:1200px;
+  --serif:"Fraunces", Georgia, "Times New Roman", serif;
+  --sans:"Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+:root[data-theme="dark"]{
+  --paper:#171310;
+  --paper-2:#1e1813;
+  --card:#221b15;
+  --ink:#f0e7d8;
+  --ink-soft:#c3b6a3;
+  --ink-faint:#948773;
+  --amber:#e79a3c;
+  --amber-deep:#f0b968;
+  --amber-wash:#33260f;
+  --teal:#6fc7b6;
+  --teal-wash:#12312b;
+  --rose:#e59079;
+  --rose-wash:#3a1f17;
+  --line:rgba(240,231,216,.14);
+  --line-strong:rgba(240,231,216,.24);
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 14px 34px -18px rgba(0,0,0,.7);
+  --shadow-lg:0 2px 6px rgba(0,0,0,.35), 0 34px 66px -30px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{
+  margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper);
+  font-size:17px;line-height:1.68;font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+/* paper grain overlay */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+}
+:root[data-theme="dark"] body::before{mix-blend-mode:screen;opacity:.35}
+
+a{color:var(--amber-deep);text-decoration-color:rgba(181,103,21,.4);text-underline-offset:3px}
+a:hover{color:var(--amber)}
+
+/* ---------- Reading progress ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+  background:linear-gradient(90deg,var(--amber),var(--teal));transition:width .1s linear}
+
+/* ---------- Top bar ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 86%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:14px;
+  padding:12px 22px}
+.brandmark{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-weight:600;
+  font-size:16px;letter-spacing:.2px;color:var(--ink);text-decoration:none}
+.brandmark .dot{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  background:var(--ink);color:var(--paper);font-family:var(--mono);font-weight:700;font-size:14px;flex:none}
+.topbar .spacer{flex:1}
+.pill-mini{font-family:var(--mono);font-size:11px;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--ink-faint);border:1px solid var(--line);border-radius:100px;padding:5px 11px;white-space:nowrap}
+.iconbtn{appearance:none;border:1px solid var(--line-strong);background:var(--card);color:var(--ink);
+  width:38px;height:38px;border-radius:10px;cursor:pointer;display:grid;place-items:center;font-size:16px;
+  transition:transform .15s ease,background .15s ease}
+.iconbtn:hover{transform:translateY(-1px);background:var(--paper-2)}
+.menubtn{display:none}
+
+/* ---------- Layout ---------- */
+.shell{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:250px 1fr;gap:44px;
+  padding:0 22px;position:relative;z-index:1}
+.toc{position:sticky;top:74px;align-self:start;height:calc(100vh - 90px);overflow-y:auto;
+  padding:26px 6px 40px 0;font-size:14.5px}
+.toc h4{font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+  color:var(--ink-faint);margin:0 0 14px 2px;font-weight:500}
+.toc a{display:flex;gap:11px;align-items:baseline;text-decoration:none;color:var(--ink-soft);
+  padding:8px 12px;border-radius:9px;line-height:1.35;transition:background .12s ease,color .12s ease}
+.toc a .n{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);min-width:20px}
+.toc a:hover{background:var(--paper-2);color:var(--ink)}
+.toc a.active{background:var(--ink);color:var(--paper)}
+.toc a.active .n{color:var(--amber-deep)}
+:root[data-theme="dark"] .toc a.active{background:var(--amber);color:#1a140d}
+:root[data-theme="dark"] .toc a.active .n{color:#1a140d}
+.toc .tip{margin:20px 8px 0;padding:14px;border:1px dashed var(--line-strong);border-radius:12px;
+  font-size:12.5px;color:var(--ink-soft);line-height:1.5}
+.toc .tip b{color:var(--ink)}
+
+main{min-width:0;padding-bottom:80px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;margin:14px 0 20px;padding:52px 46px 48px;border-radius:26px;overflow:hidden;
+  border:1px solid var(--line);box-shadow:var(--shadow-lg);
+  background:
+    radial-gradient(120% 130% at 88% -10%, var(--amber-wash) 0%, transparent 46%),
+    radial-gradient(120% 120% at 4% 110%, var(--teal-wash) 0%, transparent 42%),
+    var(--card);}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;
+  letter-spacing:1.6px;text-transform:uppercase;color:var(--amber-deep);margin-bottom:22px;font-weight:500}
+.hero .eyebrow::before{content:"";width:26px;height:1.5px;background:var(--amber)}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,5.4vw,58px);line-height:1.02;
+  letter-spacing:-.5px;margin:0 0 20px;max-width:16ch}
+.hero h1 em{font-style:italic;color:var(--amber-deep)}
+.hero .lead{font-size:19px;line-height:1.6;color:var(--ink-soft);max-width:56ch;margin:0 0 8px}
+.hero .lead strong{color:var(--ink);font-weight:600}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.hero-meta span{display:inline-flex;align-items:center;gap:8px;background:color-mix(in srgb,var(--card) 70%,transparent);
+  border:1px solid var(--line);border-radius:100px;padding:8px 15px;font-size:13.5px;color:var(--ink-soft);font-weight:500}
+.hero-meta b{color:var(--ink)}
+
+/* ---------- Sections ---------- */
+section{scroll-margin-top:84px;padding:46px 0 8px;border-top:1px solid var(--line);margin-top:30px}
+section:first-of-type{border-top:none;margin-top:8px}
+.sec-head{display:flex;gap:18px;align-items:flex-start;margin-bottom:24px}
+.sec-num{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--amber-deep);
+  border:1px solid var(--line-strong);border-radius:9px;padding:6px 10px;line-height:1;margin-top:9px;flex:none}
+.sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.6vw,38px);line-height:1.08;
+  letter-spacing:-.4px;margin:0 0 6px}
+.sec-head .sub{color:var(--ink-soft);font-size:16.5px;margin:0;max-width:60ch}
+h3{font-family:var(--serif);font-weight:600;font-size:22px;letter-spacing:-.2px;margin:34px 0 10px}
+h4{font-family:var(--sans);font-weight:700;font-size:16px;margin:22px 0 8px;letter-spacing:.1px}
+p{margin:0 0 15px;max-width:66ch}
+main ul,main ol{max-width:66ch;padding-left:22px;margin:0 0 16px}
+main li{margin:0 0 8px}
+strong{font-weight:700;color:var(--ink)}
+em{color:var(--ink-soft)}
+.muted{color:var(--ink-faint)}
+kbd{font-family:var(--mono);font-size:.82em;background:var(--paper-2);border:1px solid var(--line-strong);
+  border-bottom-width:2px;border-radius:6px;padding:1px 7px;color:var(--ink);white-space:nowrap}
+.inline-code{font-family:var(--mono);font-size:.86em;background:var(--amber-wash);color:var(--amber-deep);
+  padding:2px 7px;border-radius:6px;border:1px solid rgba(181,103,21,.18);white-space:nowrap}
+:root[data-theme="dark"] .inline-code{color:var(--amber-deep)}
+
+/* ---------- Callouts ---------- */
+.callout{border-radius:14px;padding:18px 20px 18px 20px;margin:20px 0;border:1px solid var(--line);
+  background:var(--paper-2);position:relative;display:grid;grid-template-columns:auto 1fr;gap:15px}
+.callout .ico{font-size:20px;line-height:1.3;filter:saturate(1.05)}
+.callout .body{min-width:0}
+.callout .tag{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;
+  font-weight:600;margin-bottom:5px;display:block}
+.callout p:last-child{margin-bottom:0}
+.callout.try{background:var(--teal-wash);border-color:color-mix(in srgb,var(--teal) 28%,transparent)}
+.callout.try .tag{color:var(--teal)}
+.callout.why{background:var(--amber-wash);border-color:color-mix(in srgb,var(--amber) 30%,transparent)}
+.callout.why .tag{color:var(--amber-deep)}
+.callout.warn{background:var(--rose-wash);border-color:color-mix(in srgb,var(--rose) 30%,transparent)}
+.callout.warn .tag{color:var(--rose)}
+.callout.plain .tag{color:var(--ink-faint)}
+
+/* ---------- Code blocks ---------- */
+.code{background:#efe6d4;border:1px solid var(--line-strong);border-radius:13px;margin:16px 0;overflow:hidden;
+  box-shadow:var(--shadow)}
+:root[data-theme="dark"] .code{background:#100c09}
+.code-head{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--ink) 5%,transparent)}
+.code-head .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.4px;color:var(--ink-soft);
+  text-transform:uppercase;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.code-head .lbl b{color:var(--ink);text-transform:none;letter-spacing:0}
+.copy-btn{appearance:none;border:1px solid var(--line-strong);background:var(--card);color:var(--ink);
+  font-family:var(--mono);font-size:11.5px;font-weight:500;border-radius:8px;padding:5px 11px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;transition:all .14s ease;flex:none}
+.copy-btn:hover{background:var(--amber);color:#fff;border-color:var(--amber)}
+.copy-btn.done{background:var(--teal);color:#fff;border-color:var(--teal)}
+.code pre{margin:0;padding:16px 16px;overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.6;
+  color:var(--ink);tab-size:2}
+:root[data-theme="dark"] .code pre{color:#e7dcc8}
+.code pre .cm{color:var(--ink-faint)}
+.code.prompt{background:var(--paper-2)}
+.code.prompt pre{white-space:pre-wrap;word-break:break-word;font-family:var(--sans);font-size:15px;line-height:1.6}
+
+/* ---------- Steps ---------- */
+.step{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:24px 0;border-top:1px dashed var(--line)}
+.step:first-child{border-top:none}
+.step-n{font-family:var(--serif);font-weight:600;font-size:22px;width:46px;height:46px;border-radius:13px;
+  display:grid;place-items:center;background:var(--ink);color:var(--paper);flex:none}
+:root[data-theme="dark"] .step-n{background:var(--amber);color:#1a140d}
+.step-b{min-width:0}
+.step-b h3{margin:4px 0 8px;font-size:20px}
+.step-b p{margin-bottom:10px}
+
+/* ---------- Checklist ---------- */
+.checklist{list-style:none;padding:0;margin:22px 0;border:1px solid var(--line-strong);border-radius:14px;
+  overflow:hidden;background:var(--card)}
+.checklist li{margin:0;border-top:1px solid var(--line)}
+.checklist li:first-child{border-top:none}
+.checklist label{display:flex;gap:13px;align-items:flex-start;padding:14px 18px;cursor:pointer;
+  transition:background .12s ease}
+.checklist label:hover{background:var(--paper-2)}
+.checklist input{appearance:none;width:22px;height:22px;border:2px solid var(--line-strong);border-radius:7px;
+  flex:none;margin-top:1px;cursor:pointer;position:relative;transition:all .15s ease;background:var(--paper)}
+.checklist input:checked{background:var(--teal);border-color:var(--teal)}
+.checklist input:checked::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;
+  color:#fff;font-size:14px;font-weight:700}
+.checklist .txt{font-size:15.5px;line-height:1.5}
+.checklist input:checked + .txt{color:var(--ink-faint);text-decoration:line-through}
+
+/* ---------- Tables ---------- */
+.tablewrap{overflow-x:auto;margin:18px 0;border:1px solid var(--line-strong);border-radius:13px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px}
+th,td{text-align:left;padding:12px 15px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:color-mix(in srgb,var(--ink) 6%,transparent);font-family:var(--sans);font-weight:700;
+  font-size:12.5px;letter-spacing:.3px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td b{color:var(--ink)}
+.tag-yes{color:var(--teal);font-weight:700}
+.tag-maybe{color:var(--amber-deep);font-weight:700}
+.tag-no{color:var(--rose);font-weight:700}
+td .inline-code{font-size:.8em}
+
+/* ---------- Feature grid ---------- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.mini{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 18px}
+.mini .ico{font-size:22px;margin-bottom:8px}
+.mini h4{margin:0 0 4px;font-size:15.5px}
+.mini p{font-size:14px;color:var(--ink-soft);margin:0}
+
+/* ---------- Workflow cards ---------- */
+.wf-group{margin:26px 0}
+.wf-group > .glabel{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;
+  letter-spacing:1.2px;text-transform:uppercase;color:var(--amber-deep);font-weight:600;margin:0 0 4px}
+.wf{border:1px solid var(--line);border-radius:14px;background:var(--card);margin:14px 0;overflow:hidden}
+.wf-top{padding:15px 18px 4px}
+.wf-top .t{font-weight:700;font-size:15.5px;margin:0 0 3px}
+.wf-top .why{font-size:13.5px;color:var(--ink-faint);margin:0}
+.wf .code{margin:12px 14px 14px;box-shadow:none}
+
+/* ---------- Divider quote ---------- */
+.pullquote{font-family:var(--serif);font-weight:500;font-size:clamp(20px,2.7vw,27px);line-height:1.35;
+  letter-spacing:-.3px;color:var(--ink);border-left:3px solid var(--amber);padding:6px 0 6px 24px;margin:30px 0;
+  max-width:40ch}
+
+/* ---------- Footer ---------- */
+.footer{margin-top:50px;padding:40px 44px;border-radius:26px;border:1px solid var(--line);
+  background:radial-gradient(120% 130% at 90% 0%, var(--teal-wash) 0%, transparent 50%),var(--card);
+  box-shadow:var(--shadow)}
+.footer h2{font-family:var(--serif);font-weight:600;font-size:30px;margin:0 0 10px;letter-spacing:-.3px}
+.footer p{color:var(--ink-soft)}
+.sig{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--ink);margin-top:22px}
+.linkrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.linkrow a{display:inline-flex;align-items:center;gap:8px;background:var(--paper-2);border:1px solid var(--line-strong);
+  border-radius:10px;padding:9px 14px;text-decoration:none;color:var(--ink);font-size:14px;font-weight:600;
+  transition:transform .14s ease}
+.linkrow a:hover{transform:translateY(-2px);color:var(--amber-deep)}
+
+/* ---------- Print / cheat-sheet ---------- */
+.sheet{background:var(--card);border:1px solid var(--line-strong);border-radius:16px;padding:8px 24px 22px;margin:18px 0}
+
+/* ---------- Mobile drawer scrim ---------- */
+.scrim{display:none;position:fixed;inset:0;background:rgba(20,14,9,.5);z-index:45;backdrop-filter:blur(2px)}
+
+@media (max-width:960px){
+  .shell{grid-template-columns:1fr;gap:0}
+  .toc{position:fixed;top:0;left:0;height:100vh;width:290px;max-width:86vw;background:var(--paper);
+    z-index:48;transform:translateX(-105%);transition:transform .25s ease;box-shadow:var(--shadow-lg);
+    padding:22px 16px 40px 18px;border-right:1px solid var(--line-strong)}
+  .toc.open{transform:none}
+  .scrim.show{display:block}
+  .menubtn{display:grid}
+  .hero{padding:38px 24px 34px;margin-top:16px}
+  .footer{padding:30px 22px}
+  .grid2{grid-template-columns:1fr}
+  .sec-head{gap:12px}
+  .step{gap:14px}
+  body{font-size:16px}
+}
+@media (max-width:520px){
+  .hero-meta{gap:8px}
+  .step-n{width:40px;height:40px;font-size:19px}
+  .pill-mini{display:none}
+}
+
+@media print{
+  #progress,.topbar,.toc,.scrim,.hero-meta,.iconbtn,.copy-btn{display:none !important}
+  body{background:#fff;color:#111;font-size:12px}
+  body::before{display:none}
+  .shell{display:block;padding:0;max-width:none}
+  section{page-break-inside:auto;border-top:1px solid #ccc}
+  .code,.callout,.wf,.mini,.tablewrap,.checklist,.hero,.footer{box-shadow:none !important;
+    background:#fff !important;border-color:#ccc !important}
+  .code pre{color:#111 !important}
+  a{color:#111;text-decoration:underline}
+  #cheatsheet{page-break-before:always}
+}
+</style>
+
+<div id="progress"></div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <button class="iconbtn menubtn" id="menubtn" aria-label="Open menu">☰</button>
+    <a class="brandmark" href="#top"><span class="dot">C</span> Claude Code · Starter Guide</a>
+    <span class="spacer"></span>
+    <span class="pill-mini">Made for you by Arvin</span>
+    <button class="iconbtn" id="themebtn" aria-label="Toggle light/dark" title="Light / dark">🌙</button>
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+
+<div class="shell" id="top">
+
+  <!-- ================= TOC ================= -->
+  <nav class="toc" id="toc">
+    <h4>The Guide</h4>
+    <a href="#intro"><span class="n">01</span> What this actually is</a>
+    <a href="#quickstart"><span class="n">02</span> Quick start (30 min)</a>
+    <a href="#brain"><span class="n">03</span> Give it a memory</a>
+    <a href="#connectors"><span class="n">04</span> Connectors</a>
+    <a href="#skills"><span class="n">05</span> Skills &amp; contracts</a>
+    <a href="#workflows"><span class="n">06</span> Real shop workflows</a>
+    <a href="#habits"><span class="n">07</span> Habits &amp; commands</a>
+    <a href="#safety"><span class="n">08</span> Safety &amp; money</a>
+    <a href="#cheatsheet"><span class="n">09</span> Printable cheat-sheet</a>
+    <a href="#next"><span class="n">10</span> Where to go next</a>
+    <div class="tip"><b>Tip:</b> The checkboxes and your light/dark choice are saved on this device — close it and come back anytime.</div>
+  </nav>
+
+  <!-- ================= MAIN ================= -->
+  <main>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="eyebrow">A gift from Arvin</div>
+      <!-- TO PERSONALIZE: replace "there" with your brother's name, e.g. "Hey Marco" -->
+      <h1>Hey there — meet your new <em>business partner</em>.</h1>
+      <p class="lead">Arvin here. I set this up for you because it changed how I run my work, and I think it'll do the same for your <strong>perfume shop</strong> and <strong>vape shop</strong>. This isn't a chatbot you ask trivia. It's a teammate that can <strong>open your files, read your numbers, write your posts, and draft your contracts</strong> — and actually remember your business.</p>
+      <p class="lead">Read it top to bottom the first time, then keep it around and copy from it. Take your time. You've got this. 🙌</p>
+      <div class="hero-meta">
+        <span>⏱️ Setup: <b>about 30 minutes</b></span>
+        <span>💳 Cost: <b>$20/mo (Claude Pro)</b></span>
+        <span>💻 Your PC: <b>Windows — perfect</b></span>
+        <span>🧠 Skill needed: <b>if you can use Excel, you're ready</b></span>
+      </div>
+    </header>
+
+    <!-- 01 INTRO -->
+    <section id="intro">
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <div>
+          <h2>What Claude Code actually is (and isn't)</h2>
+          <p class="sub">First, let's fix the mental picture — because it's the thing most people get wrong.</p>
+        </div>
+      </div>
+
+      <p>You've probably used ChatGPT or the Claude chat app: you type a question, it types an answer. Useful, but it lives in a little box — it can't see your inventory sheet, it forgets you tomorrow, and it can't <em>do</em> anything.</p>
+
+      <p><strong>Claude Code is different.</strong> Think of it less like a search box and more like a sharp, tireless <strong>assistant who sits at a desk inside your shop's folder on your computer</strong>. You point it at a folder full of your business stuff, and from then on it can:</p>
+
+      <div class="grid2">
+        <div class="mini"><div class="ico">📊</div><h4>Read your real files</h4><p>Open your Excel inventory and sales sheets and answer with your actual numbers — not guesses.</p></div>
+        <div class="mini"><div class="ico">✍️</div><h4>Do real work</h4><p>Write a week of Facebook posts, build a price list, draft a supplier contract, make a PDF invoice.</p></div>
+        <div class="mini"><div class="ico">🧠</div><h4>Remember your business</h4><p>Once you tell it about your two shops, it keeps that in mind every time — no re-explaining.</p></div>
+        <div class="mini"><div class="ico">🔌</div><h4>Connect your tools</h4><p>Optionally plug in Notion, Google Drive, or web research so it works with the tools you already use.</p></div>
+      </div>
+
+      <div class="callout why">
+        <div class="ico">💡</div>
+        <div class="body">
+          <span class="tag">The one big idea</span>
+          <p>You're not "using an AI tool." You're <strong>hiring a partner and teaching it your business once</strong>. The 30 minutes you spend setting it up is you training a teammate who then shows up every day, never forgets, and works for the price of a couple of coffees a month.</p>
+        </div>
+      </div>
+
+      <p class="muted">Yes — it's called "Code" and developers love it for programming. But underneath, it's a general-purpose assistant that's great with files, documents, and numbers. You will not need to write any code. Ever. Promise.</p>
+    </section>
+
+    <!-- 02 QUICKSTART -->
+    <section id="quickstart">
+      <div class="sec-head">
+        <span class="sec-num">02</span>
+        <div>
+          <h2>⚡ Quick start — get talking in ~30 minutes</h2>
+          <p class="sub">Four steps. Do them in order. By the end you'll be chatting with a partner who can see your files.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-b">
+          <h3>Get a Claude Pro plan ($20/month)</h3>
+          <p>Claude Code needs a paid plan — the <strong>free plan does not include it</strong>. The cheapest one that does is <strong>Claude Pro at $20/month</strong>, and it covers both the normal Claude chat app <em>and</em> Claude Code under one login.</p>
+          <ul>
+            <li>Go to <strong>claude.com</strong> in your web browser and sign up / subscribe to <strong>Pro</strong>.</li>
+            <li>Your Philippine <strong>Visa or Mastercard works</strong> — you'll be billed in US dollars (~₱1,200/month depending on the exchange rate).</li>
+            <li>Subscribe on the <strong>website, not through a phone app store</strong> — app-store prices can be higher.</li>
+          </ul>
+          <div class="callout plain"><div class="ico">🗓️</div><div class="body"><span class="tag">Later, if you outgrow it</span><p>Heavier use? <strong>Max</strong> is $100/mo (5× the usage) or $200/mo (20×). You almost certainly won't need it starting out. Stay on Pro.</p></div></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-b">
+          <h3>Install it on Windows</h3>
+          <p>You've got two ways. Since you're comfortable installing apps, I recommend the <strong>Desktop app</strong> — it's a normal window, no black command screen.</p>
+
+          <h4>🟢 The easy way — the Desktop app (recommended for you)</h4>
+          <ol>
+            <li><strong>Install Git first.</strong> On Windows, the Desktop app needs it. Download from <strong>git-scm.com/downloads/win</strong>, run the installer, and just click Next through it (the defaults are fine).</li>
+            <li>Go to <strong>claude.com/download</strong> and download the Windows installer, then run it.</li>
+            <li>Launch <strong>Claude</strong> from your Start menu and sign in with the account you made in Step 1.</li>
+            <li>Click the <strong>“Code”</strong> tab at the top, choose <strong>“Local”</strong>, then <strong>“Select folder”</strong> (you'll make that folder in Step 3).</li>
+          </ol>
+
+          <h4>⚫ The other way — the command line (one line, if you prefer)</h4>
+          <p>If you'd rather use the terminal: open <strong>PowerShell</strong> (search "PowerShell" in the Start menu) and paste this one line, then press Enter:</p>
+          <div class="code">
+            <div class="code-head"><span class="lbl">Paste into <b>PowerShell</b> (not Command Prompt)</span><button class="copy-btn">Copy</button></div>
+            <pre>irm https://claude.ai/install.ps1 | iex</pre>
+          </div>
+          <p>When it finishes, <strong>close and reopen</strong> PowerShell, then check it worked:</p>
+          <div class="code">
+            <div class="code-head"><span class="lbl">Check the install</span><button class="copy-btn">Copy</button></div>
+            <pre>claude --version</pre>
+          </div>
+          <div class="callout warn"><div class="ico">⚠️</div><div class="body"><span class="tag">PowerShell vs Command Prompt</span><p>That <span class="inline-code">irm ... | iex</span> line <strong>only works in PowerShell</strong> (the prompt starts with <span class="inline-code">PS C:\</span>). If you see an error about <span class="inline-code">'irm' is not recognized</span>, you're in the plain Command Prompt — open PowerShell instead. Easy trap; now you know it.</p></div></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-b">
+          <h3>Make a “business brain” folder</h3>
+          <p>Claude Code works inside <strong>one folder at a time</strong> — think of a folder as a “project.” Make one home for everything about your shops. For example, in your Documents, create:</p>
+          <div class="code">
+            <div class="code-head"><span class="lbl">A simple folder layout</span><button class="copy-btn">Copy</button></div>
+<pre>My Business/
+   perfume/
+      inventory.xlsx
+      sales.xlsx
+   vape/
+      inventory.xlsx
+      sales.xlsx
+   accounting.xlsx</pre>
+          </div>
+          <p>Drop copies of your POS exports and Excel sheets in there. In the <strong>Desktop app</strong>, click <strong>“Select folder”</strong> and choose <strong>My Business</strong>. That's it — Claude can now see those files.</p>
+          <div class="callout try"><div class="ico">✅</div><div class="body"><span class="tag">Why copies, not originals</span><p>Put <em>copies</em> in the folder while you're learning, so your live POS files are never at risk. Later, when you trust it, you can point it at the real ones.</p></div></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-b">
+          <h3>Your first three conversations</h3>
+          <p>Now just <strong>talk to it in plain English</strong>, like you'd message a smart assistant. Try these, one at a time:</p>
+
+          <div class="code prompt">
+            <div class="code-head"><span class="lbl">💬 Get to know your numbers</span><button class="copy-btn">Copy</button></div>
+<pre>Open perfume/inventory.xlsx and give me a plain-English summary:
+how many products I have, which are almost out of stock,
+and my 5 most valuable items by total stock value.</pre>
+          </div>
+
+          <div class="code prompt">
+            <div class="code-head"><span class="lbl">💬 Make it earn its keep</span><button class="copy-btn">Copy</button></div>
+<pre>Write me 3 Facebook post ideas for my perfume shop this week.
+Warm and local tone, ready to copy-paste, with a few hashtags.</pre>
+          </div>
+
+          <div class="code prompt">
+            <div class="code-head"><span class="lbl">💬 Just ask for help</span><button class="copy-btn">Copy</button></div>
+<pre>I want to run a weekend promo to move slow-selling stock
+without hurting my margins. What are 3 smart ways to do it?</pre>
+          </div>
+
+          <p>When it offers to change a file, it will <strong>show you the change and wait for your “Yes.”</strong> You're always in control. More on that in <a href="#safety">Safety &amp; money</a>.</p>
+        </div>
+      </div>
+
+      <h3>Your setup checklist</h3>
+      <p class="muted">Tick these off as you go — they'll stay saved on this device.</p>
+      <ul class="checklist" id="qs-checklist">
+        <li><label><input type="checkbox" data-k="c1"><span class="txt">Subscribed to <b>Claude Pro</b> at claude.com</span></label></li>
+        <li><label><input type="checkbox" data-k="c2"><span class="txt">Installed <b>Git for Windows</b> (git-scm.com/downloads/win)</span></label></li>
+        <li><label><input type="checkbox" data-k="c3"><span class="txt">Installed <b>Claude</b> (Desktop app from claude.com/download) and signed in</span></label></li>
+        <li><label><input type="checkbox" data-k="c4"><span class="txt">Made my <b>“My Business” folder</b> with copies of my Excel files</span></label></li>
+        <li><label><input type="checkbox" data-k="c5"><span class="txt">Pointed Claude at the folder and had my <b>first conversation</b></span></label></li>
+        <li><label><input type="checkbox" data-k="c6"><span class="txt">Added a <b>CLAUDE.md</b> so it knows my businesses (Section 03 👇)</span></label></li>
+      </ul>
+    </section>
+
+    <!-- 03 BRAIN / CLAUDE.md -->
+    <section id="brain">
+      <div class="sec-head">
+        <span class="sec-num">03</span>
+        <div>
+          <h2>🧠 The one habit that matters: give it a memory</h2>
+          <p class="sub">This single file is what turns Claude Code from “a smart tool” into “a partner that knows my business.”</p>
+        </div>
+      </div>
+
+      <p>Every time Claude Code starts up in your folder, it automatically reads a plain text file called <span class="inline-code">CLAUDE.md</span> — your <strong>briefing sheet</strong>. Whatever you write in it, Claude knows before you say a word: your shops, where your files are, how you like things done, your rules.</p>
+
+      <p>Write it once, and you stop re-explaining yourself forever. This is the highest-value 10 minutes in this whole guide.</p>
+
+      <h3>Two easy ways to create it</h3>
+      <ul>
+        <li><strong>Let Claude do it:</strong> type <span class="inline-code">/init</span> and it will look at your folder and write a starter <span class="inline-code">CLAUDE.md</span> for you.</li>
+        <li><strong>Or paste mine:</strong> copy the template below, save it as <span class="inline-code">CLAUDE.md</span> inside your <strong>My Business</strong> folder, and fill in the <span class="inline-code">[brackets]</span>.</li>
+      </ul>
+
+      <div class="code">
+        <div class="code-head"><span class="lbl">📄 <b>CLAUDE.md</b> — starter for a perfume + vape owner (edit the brackets)</span><button class="copy-btn">Copy</button></div>
+<pre># CLAUDE.md — About My Businesses
+
+## Who I am
+- I'm [YOUR NAME], owner of two retail shops in [City], Philippines.
+- I run them with a small team. I'm not a programmer.
+- Talk to me in plain, simple English. Explain like I'm smart but new to this.
+- Money is in Philippine Pesos. Write dates as DD/MM/YYYY.
+
+## My two businesses — keep them SEPARATE unless I ask to compare
+### 1. [Perfume Shop Name] — perfumes &amp; fragrances
+- We sell [inspired/authentic] perfumes, oils, testers and decants.
+- Best sellers: [name a few]. Price range: about P[___] to P[___].
+- Main suppliers: [names]. We reorder about every [2 weeks].
+
+### 2. [Vape Shop Name] — vape products (18+ only)
+- We sell [devices, pods, e-liquids, coils, accessories].
+- This is an age-restricted product. Keep ALL marketing responsible,
+  18+ only, no health claims.
+- Best sellers: [name a few]. Main suppliers: [names].
+
+## Where my files are (inside this folder)
+- perfume/inventory.xlsx  — stock, quantities, cost price, selling price
+- perfume/sales.xlsx      — sales exported from the POS
+- vape/inventory.xlsx and vape/sales.xlsx — same, for the vape shop
+- accounting.xlsx         — expenses, income, running totals
+
+## How I want you to help
+- When I ask about stock or money, READ the Excel files first,
+  then answer with real numbers and show where they came from.
+- Before you change any Excel file, save a copy first
+  (like inventory_BACKUP.xlsx) and tell me you did.
+- Facebook posts: friendly and local, never spammy.
+  Perfume = sensory and aspirational. Vape = responsible, 18+.
+- If something could cost me money or lose data, STOP and ask me first.
+
+## Things to remember
+- (You can add notes here over time, or I'll say "remember that...")</pre>
+      </div>
+
+      <div class="callout try"><div class="ico">🗣️</div><div class="body"><span class="tag">Two ways to update its memory later</span><p>You never have to hand-edit the file if you don't want to. Just tell Claude <strong>“remember that our new supplier is X”</strong> and it saves the note itself. To see or edit everything it remembers, type <span class="inline-code">/memory</span>.</p></div></div>
+
+      <div class="callout warn"><div class="ico">🚫</div><div class="body"><span class="tag">Ignore old advice about the “#” key</span><p>Older tutorials say “press <kbd>#</kbd> to save a memory.” That shortcut was <strong>removed</strong> — it doesn't work anymore. Use <span class="inline-code">/memory</span> or just say “remember that…” instead.</p></div></div>
+
+      <div class="pullquote">A tool you have to re-explain every morning isn't a partner. The briefing sheet is what makes it one.</div>
+    </section>
+
+    <!-- 04 CONNECTORS -->
+    <section id="connectors">
+      <div class="sec-head">
+        <span class="sec-num">04</span>
+        <div>
+          <h2>🔌 Connectors — plugging in your other tools</h2>
+          <p class="sub">What they are, which ones actually matter for your shops, and the honest truth about Facebook.</p>
+        </div>
+      </div>
+
+      <p>A <strong>connector</strong> lets Claude reach into another app you use — like Notion or Google Drive — and read or update things there. The technical name is “MCP,” but you can forget that word. Think: <strong>plug-ins</strong>.</p>
+
+      <div class="callout try"><div class="ico">🎉</div><div class="body"><span class="tag">Great news — the big one needs zero setup</span><p>Reading and writing your <strong>Excel files and folders is built in</strong>. No connector needed for your inventory, sales, or accounting sheets. <strong>Web research is built in too</strong> — you can ask it to look up suppliers or competitor prices out of the box.</p></div></div>
+
+      <h3>The easiest way to add a connector</h3>
+      <p>You don't touch the terminal. In the <strong>Claude app</strong>, go to <strong>Customize → Connectors</strong> (or click the <strong>+</strong> in a chat and hover “Connectors”), find the one you want, toggle it on, and sign in through your browser. Once it's on there, it <strong>automatically shows up in Claude Code</strong> too, because it's the same account.</p>
+
+      <h3>What's worth turning on — for you</h3>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Connector</th><th>What it does for you</th><th>Need it?</th><th>How to turn it on</th></tr></thead>
+          <tbody>
+            <tr><td><b>Your Excel &amp; folders</b></td><td>Read/write inventory, sales &amp; accounting sheets</td><td class="tag-yes">Built in</td><td>Nothing — just keep files in your business folder</td></tr>
+            <tr><td><b>Web search</b></td><td>Research suppliers, competitor prices, trends</td><td class="tag-yes">Built in</td><td>Nothing — already there</td></tr>
+            <tr><td><b>Notion</b></td><td>Pull your notes, SOPs &amp; plans into Claude</td><td class="tag-maybe">If you use Notion</td><td>Claude app → Customize → Connectors → Notion → sign in</td></tr>
+            <tr><td><b>Google Drive</b></td><td>Read/search files you keep in Drive</td><td class="tag-maybe">If you use Google</td><td>Same: Customize → Connectors → toggle on</td></tr>
+            <tr><td><b>Gmail</b></td><td><em>Drafts</em> replies for you (it can't send)</td><td class="tag-maybe">Optional</td><td>Same. Note: it drafts, you press send</td></tr>
+            <tr><td><b>Google Calendar</b></td><td>See &amp; create events, find free slots</td><td class="tag-maybe">Optional</td><td>Same</td></tr>
+            <tr><td><b>Facebook Page posting</b></td><td>Auto-post to your shop Pages</td><td class="tag-no">Not easy yet</td><td>Skip it — see below</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn"><div class="ico">📌</div><div class="body"><span class="tag">The honest truth about Facebook</span><p>There's <strong>no simple, official one-click connector for posting to a Facebook Page</strong> yet. (Meta's official tool is for paid ads only.) Auto-posting is possible but it's an advanced, techie setup. <strong>My advice:</strong> have Claude <em>write</em> your posts (it's brilliant at that), then you copy-paste them into Facebook yourself. Takes 20 seconds and you stay in control of what goes live.</p></div></div>
+
+      <div class="callout plain"><div class="ico">🧹</div><div class="body"><span class="tag">Rule of thumb</span><p>Only switch on connectors you actually use. Each one takes up a little room in Claude's “memory” every session, so a tidy setup is a faster, cheaper one.</p></div></div>
+    </section>
+
+    <!-- 05 SKILLS -->
+    <section id="skills">
+      <div class="sec-head">
+        <span class="sec-num">05</span>
+        <div>
+          <h2>🛠️ Skills — teaching it special talents (incl. contracts)</h2>
+          <p class="sub">Skills are saved abilities. We'll turn on the document pack, then give you a custom contract-maker.</p>
+        </div>
+      </div>
+
+      <p>A <strong>skill</strong> is a saved instruction sheet that gives Claude a repeatable talent — like “make documents” or “draft my contracts the way I like.” Claude either uses a skill automatically when it fits your request, or you trigger it by typing a slash and its name (e.g. <span class="inline-code">/business-docs</span>).</p>
+
+      <h3>Step 1 — Install the document pack (Word, Excel, PDF, PowerPoint)</h3>
+      <p>This turns Claude Code into a document maker — invoices, price lists, reports, flyers, decks. Here's the one gotcha most people miss: <strong>in Claude Code these are NOT on by default</strong> (they're automatic only in the chat app). You install them once. Type these <strong>inside Claude Code</strong>, one at a time:</p>
+
+      <div class="code">
+        <div class="code-head"><span class="lbl">Type inside Claude Code — 1) add the marketplace</span><button class="copy-btn">Copy</button></div>
+<pre>/plugin marketplace add anthropics/skills</pre>
+      </div>
+      <div class="code">
+        <div class="code-head"><span class="lbl">2) install the document skills</span><button class="copy-btn">Copy</button></div>
+<pre>/plugin install document-skills@anthropic-agent-skills</pre>
+      </div>
+      <div class="code">
+        <div class="code-head"><span class="lbl">3) turn them on now</span><button class="copy-btn">Copy</button></div>
+<pre>/reload-plugins</pre>
+      </div>
+
+      <div class="callout warn"><div class="ico">🧩</div><div class="body"><span class="tag">Note the spelling</span><p>You <em>add</em> the marketplace as <span class="inline-code">anthropics/skills</span>, but it <em>installs from</em> a name called <span class="inline-code">anthropic-agent-skills</span> — that's why the second command ends in <span class="inline-code">@anthropic-agent-skills</span>. If a command says “not found,” you probably mistyped that part.</p></div></div>
+
+      <h3>Step 2 — Add your own “Contracts &amp; Business Docs” skill</h3>
+      <p>This is the one you asked about — a contract maker built for a <strong>retail shop</strong>, not a law firm. It knows how to draft supplier agreements, consignment deals, staff contracts, invoices, receipts, and collection letters, and it asks you for the details it needs. It's <strong>yours to keep and edit.</strong></p>
+
+      <p><strong>How to install it:</strong> make a new folder on your PC at
+      <span class="inline-code">C:\Users\YOUR-NAME\.claude\skills\business-docs\</span>
+      then save the text below inside it as a file named <span class="inline-code">SKILL.md</span>. (Or just paste the whole block to Claude and say <em>“save this as my business-docs skill.”</em>) Then run <span class="inline-code">/reload-plugins</span>.</p>
+
+      <div class="code">
+        <div class="code-head"><span class="lbl">📄 <b>SKILL.md</b> — your retail contract &amp; document maker</span><button class="copy-btn">Copy</button></div>
+<pre>---
+name: business-docs
+description: Drafts retail business documents for a small shop owner —
+  supplier agreements, consignment agreements, staff employment contracts,
+  sales invoices, official-style receipts, price lists, and collection or
+  demand letters. Use whenever the user asks to draft, write, make, or
+  generate any contract, agreement, invoice, receipt, quotation, or
+  formal business letter.
+---
+
+# Business Documents (Retail)
+
+Help a non-lawyer shop owner produce clean, professional documents from a
+short brief. Keep the language plain and firm. Currency is Philippine Pesos
+unless told otherwise.
+
+## Step 1 — Gather the essentials (ask, don't assume)
+Before writing, check the document type below and ask — in ONE short list —
+for any missing must-have fields. If the owner says "just use placeholders,"
+fill them with clearly marked [BRACKETS].
+
+## Step 2 — Pick the document type and follow its checklist
+
+### Supplier / Purchase Agreement
+Need: supplier name &amp; address, shop name &amp; address, products supplied,
+prices &amp; payment terms, delivery lead time, order minimums, start date &amp;
+duration, who handles defects/returns.
+Sections: Parties · Products &amp; Prices · Orders &amp; Delivery · Payment ·
+Returns &amp; Defects · Term &amp; Termination · Confidentiality · Signatures.
+
+### Consignment Agreement (goods placed on consignment)
+Need: consignor (owner of goods), consignee (the shop), product list &amp;
+agreed retail prices, commission/split %, settlement schedule, who bears
+loss or theft, return of unsold goods.
+Sections: Parties · Consigned Goods &amp; Prices · Commission &amp; Settlement ·
+Risk &amp; Insurance · Reporting · Return of Goods · Term · Signatures.
+
+### Staff / Employment Contract
+Need: employee name, position, start date, location, schedule, salary &amp;
+pay dates, probation period, duties, confidentiality, grounds for ending.
+Sections: Parties · Position &amp; Duties · Pay &amp; Benefits · Working Hours ·
+Probation · Confidentiality &amp; Company Property · Termination · Signatures.
+(PH basics to respect: probation is max 6 months; observe minimum wage and
+13th-month pay.)
+
+### Sales Invoice / Quotation
+Need: shop name &amp; contact, customer, date, number, line items
+(description, qty, unit price, amount), subtotal, discount, total,
+payment method/terms.
+Layout: Header (room for a logo) · Bill-To · Items table · Totals ·
+Payment terms · Thank-you line.
+
+### Official-style Receipt
+Need: shop name &amp; contact, receipt number, date, customer, items, amount
+paid, payment method, "Received the amount of ...", signature line.
+
+### Collection / Demand Letter
+Need: debtor name, amount owed, original due date, what it was for, new
+deadline, and tone (friendly reminder vs firm final notice).
+Flow: Date · Recipient · Subject · Facts → amount → deadline → consequence
+· Closing.
+
+## Step 3 — Write it
+- Produce the full document as clean, ready-to-paste text.
+- Use headings, numbered clauses, and a signature block with
+  name / signature / date lines for each party.
+- Short, readable clauses. No unnecessary legalese.
+
+## Step 4 — Offer to export
+Offer to save it as a Word (.docx) or PDF. If the user agrees and the
+document-skills plugin is installed, use the docx or pdf skill to make
+the file.
+
+## Always include this note
+End every contract or agreement with: "This is a starting draft, not legal
+advice. For anything valuable or long-term, have a licensed lawyer review it
+before signing." Never claim a document is legally guaranteed or notarized.</pre>
+      </div>
+
+      <div class="callout try"><div class="ico">⚙️</div><div class="body"><span class="tag">Prefer a guided way?</span><p>There's an official helper that builds skills <em>with</em> you. Install it with <span class="inline-code">/plugin install skill-creator@claude-plugins-official</span>, run <span class="inline-code">/reload-plugins</span>, then type <span class="inline-code">/skill-creator</span> and describe the skill you want. Great for making a “weekly sales report the way I like it” skill later.</p></div></div>
+
+      <div class="callout warn"><div class="ico">🔐</div><div class="body"><span class="tag">Only install from trusted sources</span><p>Plugins run on your computer. Stick to Anthropic's <strong>official</strong> and <strong>community</strong> marketplaces (the ones shown here). Don't install random plugins from strangers — treat it like installing any unknown app.</p></div></div>
+    </section>
+
+    <!-- 06 WORKFLOWS -->
+    <section id="workflows">
+      <div class="sec-head">
+        <span class="sec-num">06</span>
+        <div>
+          <h2>💼 Real workflows for your shops</h2>
+          <p class="sub">Copy-paste these straight in. Swap the [brackets] for your details. This is where it pays for itself.</p>
+        </div>
+      </div>
+
+      <div class="wf-group">
+        <div class="glabel">📊 Inventory &amp; money</div>
+
+        <div class="wf">
+          <div class="wf-top"><p class="t">Weekly inventory health check</p><p class="why">Spot low stock, dead stock, and what to reorder — in one shot.</p></div>
+          <div class="code prompt"><div class="code-head"><span class="lbl">Prompt</span><button class="copy-btn">Copy</button></div>
+<pre>Open perfume/inventory.xlsx and give me three lists:
+1) my 10 best-selling perfumes,
+2) anything with fewer than 5 units left,
+3) any item that hasn't sold in 30 days (dead stock).
+Turn list #2 into a reorder list I can send to my supplier.</pre></div>
+        </div>
+
+        <div class="wf">
+          <div class="wf-top"><p class="t">Monthly profit summary</p><p class="why">A plain-English P&amp;L from your accounting sheet — per shop and combined.</p></div>
+          <div class="code prompt"><div class="code-head"><span class="lbl">Prompt</span><button class="copy-btn">Copy</button></div>
+<pre>From accounting.xlsx, make a simple profit summary for last month:
+total sales, total expenses, and profit — for the perfume shop and
+the vape shop separately, then combined. Show my 5 biggest expenses
+and one thing I could cut.</pre></div>
+        </div>
+
+        <div class="wf">
+          <div class="wf-top"><p class="t">Which products actually make money</p><p class="why">Profit per item, not just units sold — the number that matters.</p></div>
+          <div class="code prompt"><div class="code-head"><span class="lbl">Prompt</span><button class="copy-btn">Copy</button></div>
+<pre>Using vape/sales.xlsx and vape/inventory.xlsx, work out profit per
+product (selling price minus cost). Show my top 10 earners and any
+item losing money or barely moving. Give me 3 actions for next month.</pre></div>
+        </div>
+
+        <div class="wf">
+          <div class="wf-top"><p class="t">Compare the two shops</p><p class="why">Where to put your next peso.</p></div>
+          <div class="code prompt"><div class="code-head"><span class="lbl">Prompt</span><button class="copy-btn">Copy</button></div>
+<pre>Compare my perfume shop and vape shop using their sales files:
+which is growing faster, which has healthier margins, and where
+should I invest more next month? Keep it to a short, clear answer.</pre></div>
+        </div>
+      </div>
+
+      <div class="wf-group">
+        <div class="glabel">📣 Marketing (Facebook)</div>
+
+        <div class="wf">
+          <div class="wf-top"><p class="t">A week of perfume posts</p><p class="why">Seven ready-to-paste captions with a weekend promo built in.</p></div>
+          <div class="code prompt"><div class="code-head"><span class="lbl">Prompt</span><button class="copy-btn">Copy</button></div>
+<pre>Write 7 Facebook posts for [Perfume Shop] for next week, one per day.
+Warm and local tone, aspirational and sensory. Feature [best seller]
+midweek and a weekend promo. Each post: a short caption + 3 hashtags,
+ready to copy-paste.</pre></div>
+        </div>
+
+        <div class="wf">
+          <div class="wf-top"><p class="t">Responsible vape posts (18+)</p><p class="why">On-brand and compliant — no health claims, no minors.</p></div>
+          <div class="code prompt"><div class="code-head"><span class="lbl">Prompt</span><button class="copy-btn">Copy</button></div>
+<pre>Write 5 Facebook posts for [Vape Shop]. This is an 18+ age-restricted
+product: no health claims, don't appeal to minors, follow platform
+rules. Focus on product features, flavors, and the in-store experience.
+Add an "Strictly 18+ only" line to each. Short captions, ready to post.</pre></div>
+        </div>
+
+        <div class="wf">
+          <div class="wf-top"><p class="t">Price list &amp; flyer</p><p class="why">Turn stock into a shareable list and a PDF flyer.</p></div>
+          <div class="code prompt"><div class="code-head"><span class="lbl">Prompt</span><button class="copy-btn">Copy</button></div>
+<pre>Turn my top 15 perfumes from perfume/inventory.xlsx into an attractive
+price list grouped by fragrance family (fresh, floral, woody, sweet).
+Give me a version I can post as a caption, and also save it as a
+nice PDF flyer.</pre></div>
+        </div>
+      </div>
+
+      <div class="wf-group">
+        <div class="glabel">🙋 Customers &amp; staff</div>
+
+        <div class="wf">
+          <div class="wf-top"><p class="t">Reply to a customer message</p><p class="why">Two polite options, in a warm Filipino-English tone.</p></div>
+          <div class="code prompt"><div class="code-head"><span class="lbl">Prompt</span><button class="copy-btn">Copy</button></div>
+<pre>Here's a customer message: "[paste the message]".
+Draft 2 polite reply options in a friendly Filipino-English tone —
+one if the item is in stock, one if we're out and offering an
+alternative. Keep them short.</pre></div>
+        </div>
+
+        <div class="wf">
+          <div class="wf-top"><p class="t">Staff cheat-sheet</p><p class="why">Train new hires to sell like you do.</p></div>
+          <div class="code prompt"><div class="code-head"><span class="lbl">Prompt</span><button class="copy-btn">Copy</button></div>
+<pre>Make a one-page cheat-sheet for my perfume shop staff: how to describe
+each fragrance family to customers, how to upsell testers and decants,
+and 5 common questions with good answers. Simple and friendly.</pre></div>
+        </div>
+      </div>
+
+      <div class="wf-group">
+        <div class="glabel">📝 Documents &amp; contracts</div>
+
+        <div class="wf">
+          <div class="wf-top"><p class="t">Consignment agreement</p><p class="why">Uses your <span class="inline-code">business-docs</span> skill from Section 05.</p></div>
+          <div class="code prompt"><div class="code-head"><span class="lbl">Prompt</span><button class="copy-btn">Copy</button></div>
+<pre>Use the business-docs skill to draft a consignment agreement:
+a local supplier will place perfume testers in my shop, I keep 25%
+of each sale, we settle every 2 weeks, and unsold stock returns after
+60 days. Then save it as a Word file.</pre></div>
+        </div>
+
+        <div class="wf">
+          <div class="wf-top"><p class="t">Reusable invoice template</p><p class="why">A clean PDF invoice you can use again and again.</p></div>
+          <div class="code prompt"><div class="code-head"><span class="lbl">Prompt</span><button class="copy-btn">Copy</button></div>
+<pre>Use the business-docs skill to make a clean sales invoice template for
+[Perfume Shop] — shop name, an items table, subtotal, discount and
+total, plus payment terms. Save it as a reusable PDF.</pre></div>
+        </div>
+      </div>
+
+      <div class="callout try"><div class="ico">🌟</div><div class="body"><span class="tag">The real unlock</span><p>Don't stop at these. Anything you do the same way every week — a report, a reminder, a supplier email — you can hand to Claude. The best prompt is just <strong>you, describing the job to a capable new hire.</strong></p></div></div>
+    </section>
+
+    <!-- 07 HABITS -->
+    <section id="habits">
+      <div class="sec-head">
+        <span class="sec-num">07</span>
+        <div>
+          <h2>✅ Habits that make you good at this</h2>
+          <p class="sub">Five small habits, plus the only commands you need to memorize.</p>
+        </div>
+      </div>
+
+      <ol>
+        <li><strong>Be specific.</strong> “Make a report” is weak. “Make a one-page monthly sales report grouped by product, highest first” gets gold. Give it the details you'd give a new employee.</li>
+        <li><strong>Iterate, don't restart.</strong> If the first answer isn't right, say “make it shorter” or “more casual” — it builds on what it just did. It's a conversation.</li>
+        <li><strong>Ask it to think first.</strong> For anything big, press <kbd>Shift</kbd>+<kbd>Tab</kbd> to switch to <strong>Plan mode</strong> — it explains its plan <em>without changing any files</em> until you're happy.</li>
+        <li><strong>Start fresh for new topics.</strong> Finished with inventory and moving to marketing? Type <span class="inline-code">/clear</span> so it isn't dragging old context around. Your files are untouched.</li>
+        <li><strong>Let it remember.</strong> Whenever you correct it (“we always price in round numbers”), add <strong>“— remember that.”</strong> Next time it just knows.</li>
+      </ol>
+
+      <h3>The commands worth knowing</h3>
+      <p class="muted">Type <span class="inline-code">/</span> inside Claude Code any time to see the full list. These are the ones you'll actually use:</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Type this</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td><span class="inline-code">/help</span></td><td>Show everything you can do</td></tr>
+            <tr><td><span class="inline-code">/init</span></td><td>Auto-write a starter <b>CLAUDE.md</b> for the current folder</td></tr>
+            <tr><td><span class="inline-code">/memory</span></td><td>See &amp; edit what Claude remembers about you</td></tr>
+            <tr><td><span class="inline-code">/clear</span></td><td>Start a fresh chat (frees its memory; your files stay)</td></tr>
+            <tr><td><span class="inline-code">/compact</span></td><td>Shrink a long chat so you can keep going without losing the thread</td></tr>
+            <tr><td><span class="inline-code">/rewind</span></td><td>Undo Claude's file edits (see the warning in Safety 👇)</td></tr>
+            <tr><td><span class="inline-code">/resume</span></td><td>Go back to an earlier conversation</td></tr>
+            <tr><td><span class="inline-code">/model</span></td><td>Switch the brain: <b>Sonnet</b> (default), <b>Opus</b> (deepest), <b>Haiku</b> (fastest)</td></tr>
+            <tr><td><span class="inline-code">/mcp</span></td><td>Manage &amp; sign into connectors</td></tr>
+            <tr><td><span class="inline-code">/cost</span></td><td>See your usage &amp; spending</td></tr>
+            <tr><td><span class="inline-code">/permissions</span></td><td>Control what Claude is &amp; isn't allowed to do</td></tr>
+            <tr><td><span class="inline-code">/doctor</span></td><td>Check your install is healthy (press <kbd>f</kbd> to auto-fix)</td></tr>
+            <tr><td><span class="inline-code">/exit</span></td><td>Quit</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout plain"><div class="ico">🧭</div><div class="body"><span class="tag">Which brain to use</span><p>Leave it on the default (<strong>Sonnet</strong>) — it's fast and handles almost everything. For a really meaty task (a big analysis or plan) switch to <strong>Opus</strong> with <span class="inline-code">/model</span>. Ignore the <span class="inline-code">/fast</span> button — it costs extra money on top of your plan.</p></div></div>
+    </section>
+
+    <!-- 08 SAFETY -->
+    <section id="safety">
+      <div class="sec-head">
+        <span class="sec-num">08</span>
+        <div>
+          <h2>🔒 Safety &amp; money — read this once, relax forever</h2>
+          <p class="sub">Nothing scary here — just the handful of things that keep your files and your wallet safe.</p>
+        </div>
+      </div>
+
+      <h3>You're always in control</h3>
+      <p>Claude Code <strong>can't secretly change anything</strong>. Reading files is free and automatic, but before it <strong>edits a file or runs a command</strong>, it shows you exactly what it wants to do and waits for your <strong>“Yes.”</strong> When in doubt, use <strong>Plan mode</strong> (<kbd>Shift</kbd>+<kbd>Tab</kbd>) so it only advises.</p>
+
+      <div class="callout warn"><div class="ico">💾</div><div class="body"><span class="tag">Back up your money files</span><p>Keep your Excel sheets in a folder that syncs to Google Drive or OneDrive, and work on <em>copies</em>. There's a <span class="inline-code">/rewind</span> command to undo Claude's edits — but it <strong>only undoes edits Claude made with its own tools</strong>, not files removed by a system command. So <span class="inline-code">/rewind</span> is a nice safety net, not a substitute for real backups.</p></div></div>
+
+      <div class="callout warn"><div class="ico">💳</div><div class="body"><span class="tag">Two buttons that cost extra — leave them OFF</span><p>Your $20 Pro plan is a flat fee. Two things can add charges on top: the <span class="inline-code">/fast</span> mode, and any prompt to <strong>“enable usage credits.”</strong> As a beginner, say <strong>no</strong> to both and you'll never get a surprise bill. Check spending anytime with <span class="inline-code">/cost</span>.</p></div></div>
+
+      <div class="callout warn"><div class="ico">🤫</div><div class="body"><span class="tag">Keep secrets secret</span><p>Don't paste passwords, full card numbers, or sensitive customer data unless you truly need to. Treat it like a trusted staff member — helpful and private, but you still don't hand over the keys to everything.</p></div></div>
+
+      <div class="callout why"><div class="ico">🧠</div><div class="body"><span class="tag">It can be confidently wrong</span><p>It's brilliant but not perfect. <strong>Always sanity-check numbers</strong> before you act on them, and for anything legal, tax, or high-value (like a big contract), <strong>have a real professional review it.</strong> The contract skill even reminds you of this in every document it makes.</p></div></div>
+    </section>
+
+    <!-- 09 CHEAT SHEET -->
+    <section id="cheatsheet">
+      <div class="sec-head">
+        <span class="sec-num">09</span>
+        <div>
+          <h2>🖨️ Your one-page cheat-sheet</h2>
+          <p class="sub">Print this (Ctrl+P) and stick it by your desk. Everything essential, at a glance.</p>
+        </div>
+      </div>
+
+      <div class="sheet">
+        <h3>Setup, in order</h3>
+        <ol>
+          <li>Subscribe to <b>Claude Pro</b> ($20/mo) at <b>claude.com</b></li>
+          <li>Install <b>Git</b> (git-scm.com/downloads/win)</li>
+          <li>Install <b>Claude</b> from <b>claude.com/download</b> → sign in → “Code” tab</li>
+          <li>Make a <b>My Business</b> folder with your Excel files → “Select folder”</li>
+          <li>Add a <b>CLAUDE.md</b> (type <span class="inline-code">/init</span> or paste the template)</li>
+          <li>Install docs: <span class="inline-code">/plugin marketplace add anthropics/skills</span> → <span class="inline-code">/plugin install document-skills@anthropic-agent-skills</span> → <span class="inline-code">/reload-plugins</span></li>
+        </ol>
+
+        <h3>Commands to remember</h3>
+        <div class="tablewrap">
+          <table>
+            <tbody>
+              <tr><td><span class="inline-code">/help</span></td><td>List everything</td><td><span class="inline-code">/clear</span></td><td>Fresh chat</td></tr>
+              <tr><td><span class="inline-code">/memory</span></td><td>What it remembers</td><td><span class="inline-code">/compact</span></td><td>Shrink long chat</td></tr>
+              <tr><td><span class="inline-code">/init</span></td><td>Write CLAUDE.md</td><td><span class="inline-code">/rewind</span></td><td>Undo edits</td></tr>
+              <tr><td><span class="inline-code">/model</span></td><td>Change brain</td><td><span class="inline-code">/cost</span></td><td>See spending</td></tr>
+              <tr><td><kbd>Shift</kbd>+<kbd>Tab</kbd></td><td>Plan mode (safe)</td><td><span class="inline-code">/exit</span></td><td>Quit</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Golden rules</h3>
+        <ul>
+          <li>Talk to it like a smart new hire — be specific, then refine.</li>
+          <li>It asks before it changes anything. Use Plan mode when unsure.</li>
+          <li>Work on <b>copies</b> of your money files; keep real backups.</li>
+          <li>Say “<b>remember that…</b>” to teach it something for good.</li>
+          <li>Say <b>no</b> to <span class="inline-code">/fast</span> and “enable usage credits” to avoid extra charges.</li>
+          <li>Sanity-check numbers; get a pro to review real contracts.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 10 NEXT / FOOTER -->
+    <section id="next" style="border-top:none">
+      <div class="footer">
+        <h2>You're ready. Go talk to your partner. 🚀</h2>
+        <p>Seriously — the best way to learn this is to open it and start chatting about something real from today. Ask it about your slowest-selling product. Ask it to write tomorrow's post. You can't break anything, and it gets more useful the more it learns your shops.</p>
+        <p>If you get stuck, the official help pages are genuinely good, and you can always message me. Proud of you for trying something new. 💛</p>
+        <div class="sig">— Arvin</div>
+        <div class="linkrow">
+          <a href="https://code.claude.com/docs/en/quickstart" target="_blank" rel="noopener">📘 Official quickstart</a>
+          <a href="https://code.claude.com/docs/en/desktop-quickstart" target="_blank" rel="noopener">🖥️ Desktop app setup</a>
+          <a href="https://claude.com/pricing" target="_blank" rel="noopener">💳 Plans &amp; pricing</a>
+          <a href="#top">↑ Back to top</a>
+        </div>
+      </div>
+      <p class="muted" style="text-align:center;margin-top:24px;font-size:12.5px">
+        Made with care by Arvin · Setup details verified against the official Claude Code docs, July 2026 ·
+        Claude Code changes fast, so if a screen looks different, trust what's on your screen and type <span class="inline-code">/help</span>.
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  // ---------- Theme ----------
+  var root=document.documentElement, tbtn=document.getElementById('themebtn');
+  function apply(t){root.setAttribute('data-theme',t);tbtn.textContent=(t==='dark')?'☀️':'🌙';}
+  var saved=null;try{saved=localStorage.getItem('cc_theme');}catch(e){}
+  if(!saved){saved=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+  apply(saved);
+  tbtn.addEventListener('click',function(){
+    var t=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    apply(t);try{localStorage.setItem('cc_theme',t);}catch(e){}
+  });
+
+  // ---------- Copy buttons ----------
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var block=btn.closest('.code');
+      var code=block?block.querySelector('pre'):null;
+      if(!code)return;
+      var text=code.innerText;
+      function ok(){var o=btn.textContent;btn.textContent='✓ Copied';btn.classList.add('done');
+        setTimeout(function(){btn.textContent=o;btn.classList.remove('done');},1600);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(ok,function(){fallback(text,ok);});
+      }else{fallback(text,ok);}
+    });
+  });
+  function fallback(text,ok){
+    var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');ok();}catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  // ---------- Reading progress ----------
+  var bar=document.getElementById('progress');
+  function prog(){
+    var h=document.documentElement;
+    var max=(h.scrollHeight-h.clientHeight);
+    var p=max>0?(h.scrollTop/max)*100:0;
+    bar.style.width=p+'%';
+  }
+  window.addEventListener('scroll',prog,{passive:true});prog();
+
+  // ---------- TOC scrollspy ----------
+  var links=Array.prototype.slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);map[id]=a;});
+  var secs=Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          links.forEach(function(l){l.classList.remove('active');});
+          var a=map[en.target.id];if(a)a.classList.add('active');
+        }
+      });
+    },{rootMargin:'-45% 0px -50% 0px',threshold:0});
+    secs.forEach(function(s){io.observe(s);});
+  }
+
+  // ---------- Mobile drawer ----------
+  var toc=document.getElementById('toc'),scrim=document.getElementById('scrim'),mb=document.getElementById('menubtn');
+  function open(){toc.classList.add('open');scrim.classList.add('show');}
+  function close(){toc.classList.remove('open');scrim.classList.remove('show');}
+  mb.addEventListener('click',open);scrim.addEventListener('click',close);
+  toc.addEventListener('click',function(e){if(e.target.closest('a'))close();});
+
+  // ---------- Checklist persistence ----------
+  var boxes=document.querySelectorAll('#qs-checklist input[type=checkbox]');
+  var store={};try{store=JSON.parse(localStorage.getItem('cc_checklist')||'{}');}catch(e){}
+  boxes.forEach(function(b){
+    var k=b.getAttribute('data-k');
+    if(store[k])b.checked=true;
+    b.addEventListener('change',function(){
+      store[k]=b.checked;try{localStorage.setItem('cc_checklist',JSON.stringify(store));}catch(e){}
+    });
+  });
+})();
+</script>
