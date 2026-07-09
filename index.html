@@ -279,13 +279,13 @@ td .inline-code{font-size:.8em}
 .sheet{background:var(--card);border:1px solid var(--line-strong);border-radius:16px;padding:8px 24px 22px;margin:18px 0}
 
 /* ---------- Mobile drawer scrim ---------- */
-.scrim{display:none;position:fixed;inset:0;background:rgba(20,14,9,.5);z-index:45;backdrop-filter:blur(2px)}
+.scrim{display:none;position:fixed;inset:0;background:rgba(20,14,9,.55);z-index:45}
 
 @media (max-width:960px){
   .shell{grid-template-columns:1fr;gap:0}
-  .toc{position:fixed;top:0;left:0;height:100vh;width:290px;max-width:86vw;background:var(--paper);
+  .toc{position:fixed;top:0;left:0;height:100vh;height:100dvh;width:290px;max-width:86vw;background:var(--paper-2);
     z-index:48;transform:translateX(-105%);transition:transform .25s ease;box-shadow:var(--shadow-lg);
-    padding:22px 16px 40px 18px;border-right:1px solid var(--line-strong)}
+    padding:92px 16px 40px 18px;border-right:2px solid var(--amber)}
   .toc.open{transform:none}
   .scrim.show{display:block}
   .menubtn{display:grid}
